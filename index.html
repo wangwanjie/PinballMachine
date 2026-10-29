@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh-Hans" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pocket Pinball · 竖屏街机弹珠游戏</title>
+<meta name="description" content="Pocket Pinball 是一款 iPhone 竖屏街机弹珠游戏：投珠、锁倍率、拉弹簧，把钢珠砸进亮槽。9 套机台皮肤、8 种背景音乐、8 种音效风格，无需账号。">
+<meta name="theme-color" content="#0b0614" id="meta-theme-color">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pocket Pinball">
+<meta property="og:description" content="iPhone 竖屏街机弹珠游戏：投珠、锁倍率、拉弹簧，把钢珠砸进亮槽。">
+<meta property="og:image" content="assets/img/icon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/img/icon-180.png">
+<script>
+// 首屏前确定语言与主题，避免闪烁；URL 参数优先于 localStorage
+(function () {
+  var d = document.documentElement, q = new URLSearchParams(location.search), s = null;
+  try { s = localStorage; } catch (e) {}
+  var mode = q.get('theme') || (s && s.getItem('pp-theme')) || 'system';
+  if (['light', 'dark', 'system'].indexOf(mode) < 0) { mode = 'system'; }
+  var dark = mode === 'dark' || (mode === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+  d.dataset.themeMode = mode;
+  d.dataset.theme = dark ? 'dark' : 'light';
+  var lang = q.get('lang') || (s && s.getItem('pp-lang'));
+  if (['zh-Hans', 'zh-Hant', 'en'].indexOf(lang) < 0) {
+    lang = 'en';
+    var list = navigator.languages || [navigator.language || 'en'];
+    for (var i = 0; i < list.length; i++) {
+      var l = String(list[i]).toLowerCase();
+      if (/^zh-(tw|hk|mo|hant)/.test(l)) { lang = 'zh-Hant'; break; }
+      if (/^zh/.test(l)) { lang = 'zh-Hans'; break; }
+      if (/^en/.test(l)) { break; }
+    }
+  }
+  d.lang = lang;
+})();
+</script>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="crt" aria-hidden="true"></div>
+<a class="skip" href="#main" data-i18n="skip">跳到正文</a>
+
+<header class="top">
+  <a class="brand" href="./" aria-label="Pocket Pinball">
+    <img src="assets/img/icon-64.webp" srcset="assets/img/icon-64.webp 1x, assets/img/icon-128.webp 2x" width="36" height="36" alt="Pocket Pinball 图标" data-i18n-alt="iconAlt" decoding="async">
+    <span class="brand-name">Pocket Pinball</span>
+  </a>
+  <nav class="tools">
+    <div class="seg" role="group" aria-label="语言" data-i18n-aria="langLabel" id="lang-seg">
+      <button type="button" data-lang="zh-Hans">简</button>
+      <button type="button" data-lang="zh-Hant">繁</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+    <div class="seg" role="group" aria-label="主题" data-i18n-aria="themeLabel" id="theme-seg">
+      <button type="button" data-theme-btn="light" aria-label="浅色" data-i18n-aria="themeLight"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></button>
+      <button type="button" data-theme-btn="dark" aria-label="深色" data-i18n-aria="themeDark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg></button>
+      <button type="button" data-theme-btn="system" aria-label="跟随系统" data-i18n-aria="themeSystem"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></button>
+    </div>
+    <a class="gh" href="https://github.com/wangwanjie/PinballMachine" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="kicker"><span class="dot"></span><span data-i18n="kicker">iPhone · 竖屏街机弹珠</span></p>
+      <h1 class="neon-title" aria-label="Pocket Pinball"><span class="tube t1">POCKET</span><span class="tube t2">PIN<span class="flick">B</span>ALL</span></h1>
+      <p class="lead" data-i18n="lead">投珠、锁倍率、拉弹簧，把钢珠砸进亮槽。一台装进口袋的街机，开局快，重来更快。</p>
+      <div class="cta">
+        <a class="btn btn-primary" id="dl-btn" href="https://github.com/wangwanjie/PinballMachine/releases/latest/download/PocketPinball.ipa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 20h16"/></svg><span data-i18n="ctaDownload">下载 IPA</span></a>
+        <a class="btn btn-ghost" href="#install" data-i18n="ctaInstall">安装须知</a>
+      </div>
+      <p class="fine" data-i18n="ctaFine">v1.0 · iOS 15.0+ · Ad Hoc 签名，仅限已登记设备直接安装</p>
+    </div>
+
+    <div class="cabinet" id="cabinet">
+      <div class="chase" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="board">
+        <div class="readout"><span class="lbl" data-i18n="sbScore">得分</span><span class="seg7" id="sb-score" data-digits="6"></span></div>
+        <div class="readout small"><span class="lbl" data-i18n="sbBall">球</span><span class="seg7" id="sb-ball" data-digits="1"></span></div>
+        <div class="readout small"><span class="lbl" data-i18n="sbMulti">倍率</span><span class="seg7" id="sb-multi" data-digits="1"></span></div>
+      </div>
+      <canvas id="table" width="360" height="580" role="img" aria-label="可以玩的迷你弹珠台：方向键左右或点按左右半屏控制挡板" data-i18n-aria="canvasLabel"></canvas>
+      <p class="hint" id="hint"><kbd>←</kbd><kbd>→</kbd> <span data-i18n="hint">控制挡板 · 点按左右半屏也行 · 空格发球</span></p>
+      <div class="chase" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+  </section>
+
+  <section class="how reveal" id="how">
+    <h2 class="sec-title"><span class="sec-no">01</span><span data-i18n="howTitle">一局怎么玩</span></h2>
+    <ol class="steps">
+      <li class="step"><span class="step-n">1</span><h3 data-i18n="s1t">投珠</h3><p data-i18n="s1d">点投珠按钮把钢珠投进机台，至少 5 颗才能开局。</p></li>
+      <li class="step"><span class="step-n">2</span><h3 data-i18n="s2t">锁倍率</h3><p data-i18n="s2d">机台锁定本局倍率，并点亮底部的若干槽位。</p></li>
+      <li class="step"><span class="step-n">3</span><h3 data-i18n="s3t">拉弹簧</h3><p data-i18n="s3d">按住弹簧向下拖动蓄力，看准节奏松手，顶杆击球。</p></li>
+      <li class="step"><span class="step-n">4</span><h3 data-i18n="s4t">进亮槽</h3><p data-i18n="s4d">钢珠穿过钉阵落进亮槽就算命中，按倍率返还弹珠。</p></li>
+    </ol>
+    <div class="results">
+      <div class="res win"><b data-i18n="rWin">命中</b><span data-i18n="rWinD">落入亮槽，按倍率返还</span></div>
+      <div class="res near"><b data-i18n="rNear">差一点</b><span data-i18n="rNearD">落入暗槽，但擦到亮槽边缘</span></div>
+      <div class="res miss"><b data-i18n="rMiss">落空</b><span data-i18n="rMissD">落入暗槽，本局没有返还</span></div>
+    </div>
+  </section>
+
+  <section class="shots reveal" id="shots">
+    <h2 class="sec-title"><span class="sec-no">02</span><span data-i18n="shotsTitle">机台实拍</span></h2>
+    <div class="phones">
+      <figure class="phone">
+        <img src="assets/img/shot-charge-360.webp" srcset="assets/img/shot-charge-360.webp 360w, assets/img/shot-charge-720.webp 719w" sizes="(max-width: 640px) 70vw, 260px" width="360" height="780" loading="lazy" decoding="async" alt="蓄力阶段：钉阵下方四个槽位被点亮" data-i18n-alt="shot1Alt">
+        <figcaption data-i18n="shot1Cap">蓄力：弹簧压力实时显示</figcaption>
+      </figure>
+      <figure class="phone">
+        <img src="assets/img/shot-win-360.webp" srcset="assets/img/shot-win-360.webp 360w, assets/img/shot-win-720.webp 719w" sizes="(max-width: 640px) 70vw, 260px" width="360" height="780" loading="lazy" decoding="async" alt="命中结算：返还 20 颗弹珠，倍率 4x" data-i18n-alt="shot2Alt">
+        <figcaption data-i18n="shot2Cap">命中：倍率 4x，返还 +20</figcaption>
+      </figure>
+      <figure class="phone">
+        <img src="assets/img/shot-nearmiss-360.webp" srcset="assets/img/shot-nearmiss-360.webp 360w, assets/img/shot-nearmiss-720.webp 719w" sizes="(max-width: 640px) 70vw, 260px" width="360" height="780" loading="lazy" decoding="async" alt="差一点：钢珠落入暗槽，紧挨 8x 亮槽" data-i18n-alt="shot3Alt">
+        <figcaption data-i18n="shot3Cap">差一点：只差一格进亮槽</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="vibes reveal" id="vibes">
+    <h2 class="sec-title"><span class="sec-no">03</span><span data-i18n="vibesTitle">机台氛围</span></h2>
+    <p class="sec-lead" data-i18n="vibesLead">皮肤只换灯光与配色，不改玩法。部分皮肤会同步更换主屏幕图标。</p>
+    <div class="vibe-grid">
+      <div class="vibe">
+        <div class="vibe-head"><span class="big seg-count">9</span><h3 data-i18n="skinsT">机台皮肤</h3></div>
+        <ul class="chips" id="chips-skins"></ul>
+      </div>
+      <div class="vibe">
+        <div class="vibe-head"><span class="big seg-count">8</span><h3 data-i18n="musicT">背景音乐</h3></div>
+        <ul class="chips" id="chips-music"></ul>
+      </div>
+      <div class="vibe">
+        <div class="vibe-head"><span class="big seg-count">8</span><h3 data-i18n="sfxT">音效风格</h3></div>
+        <ul class="chips" id="chips-sfx"></ul>
+      </div>
+    </div>
+    <p class="note"><span class="free-dot"></span><span data-i18n="freeNote">标绿点的为默认免费项（免费范围可由远程配置调整）；其余内容通过应用内「永久解锁」一次性开启。</span></p>
+  </section>
+
+  <section class="facts reveal" id="facts">
+    <h2 class="sec-title"><span class="sec-no">04</span><span data-i18n="factsTitle">机台规则</span></h2>
+    <div class="fact-grid">
+      <div class="fact"><span class="fact-k">100</span><p data-i18n="f1">弹珠少于 100 颗时，可一键重置为 100 颗</p></div>
+      <div class="fact"><span class="fact-k">3 / 6</span><p data-i18n="f2">每日免费重置次数：普通 3 次，永久解锁后 6 次</p></div>
+      <div class="fact"><span class="fact-k">0</span><p data-i18n="f3">无需注册账号，进度保存在本机</p></div>
+      <div class="fact"><span class="fact-k">3</span><p data-i18n="f4">界面语言：简体中文、繁體中文、English</p></div>
+    </div>
+  </section>
+
+  <section class="install reveal" id="install">
+    <h2 class="sec-title"><span class="sec-no">05</span><span data-i18n="installTitle">下载与安装</span></h2>
+    <div class="install-wrap">
+      <div class="ticket">
+        <div class="ticket-row"><span data-i18n="tVer">版本</span><b>1.0 (1)</b></div>
+        <div class="ticket-row"><span data-i18n="tSys">系统要求</span><b data-i18n="tSysV">iPhone · iOS 15.0 或更高</b></div>
+        <div class="ticket-row"><span data-i18n="tSign">签名</span><b>Ad Hoc</b></div>
+        <div class="ticket-row"><span data-i18n="tSize">大小</span><b>2.9 MB</b></div>
+        <div class="ticket-row"><span data-i18n="tExp">描述文件有效期至</span><b>2027-04-05</b></div>
+        <a class="btn btn-primary wide" id="dl-btn-2" href="https://github.com/wangwanjie/PinballMachine/releases/latest/download/PocketPinball.ipa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 20h16"/></svg><span data-i18n="ctaDownload">下载 IPA</span></a>
+        <a class="link" href="https://github.com/wangwanjie/PinballMachine/releases" data-i18n="allReleases">查看全部版本</a>
+      </div>
+      <div class="install-text">
+        <div class="warn">
+          <h3 data-i18n="limitT">安装限制</h3>
+          <p data-i18n="limitD">这是 App Store 之外的分发版本。安装包使用 Ad Hoc 描述文件签名，只有 UDID 已登记在该描述文件中的设备才能直接安装；其他设备安装会失败。</p>
+        </div>
+        <ol class="howto">
+          <li data-i18n="i1">已登记设备：用 Mac 上的 Finder 或 Apple Configurator，把 IPA 拖到已连接的 iPhone 上安装。</li>
+          <li data-i18n="i2">未登记设备：可以尝试用 AltStore、Sideloadly 等工具以自己的 Apple ID 重新签名后安装，能否成功取决于工具与账号，这里不作保证；免费 Apple ID 签名通常 7 天后需重新签名。</li>
+          <li data-i18n="i3">描述文件在 2027-04-05 过期，之后已安装的副本将无法打开，需要换用新的安装包。</li>
+          <li data-i18n="i4">应用内购买在这种分发方式下走 Apple 沙盒环境，无法真实付费；默认免费的皮肤、音乐与音效可以直接游玩。</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="privacy reveal" id="privacy">
+    <h2 class="sec-title"><span class="sec-no">06</span><span data-i18n="privTitle">隐私</span></h2>
+    <div class="priv-grid">
+      <p data-i18n="p1">语言、音频、外观、弹珠数量、每日重置计数和安装标识保存在设备本地。</p>
+      <p data-i18n="p2">启动时向 RCPlatform 拉取运行时配置（隐私政策链接、免费内容、重置策略等），请求中带有应用版本与本地生成的安装标识。</p>
+      <p data-i18n="p3">购买与恢复购买由 Apple StoreKit 处理，应用不接触你的支付卡信息。</p>
+    </div>
+    <p class="priv-links"><a href="public/privacy-policy.html" data-i18n="privLink">完整隐私政策</a><a href="public/support.html" data-i18n="supportLink">技术支持</a></p>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><img src="assets/img/icon-64.webp" width="28" height="28" alt="" loading="lazy" decoding="async"><span>Pocket Pinball</span></div>
+    <nav class="foot-links">
+      <a href="https://vanjay.cn" data-i18n="more">VanJay 的更多作品</a>
+      <a href="https://github.com/wangwanjie/PinballMachine" data-i18n="repo">GitHub 仓库</a>
+      <a href="https://github.com/wangwanjie/PinballMachine/issues" data-i18n="feedback">反馈问题</a>
+    </nav>
+    <p class="copy">© 2026 VanJay</p>
+  </div>
+</footer>
+
+<script src="assets/site.js" defer></script>
+<script src="assets/pinball.js" defer></script>
+</body>
+</html>

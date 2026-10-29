@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pocket Pinball Privacy Policy</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #120b17;
+        --panel: rgba(28, 19, 37, 0.84);
+        --panel-strong: rgba(39, 26, 52, 0.96);
+        --line: rgba(255, 214, 107, 0.18);
+        --text: #fff5d6;
+        --muted: #dccfb1;
+        --accent: #ffbe3d;
+        --accent-2: #49d7ff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Avenir Next", "PingFang SC", "Hiragino Sans GB", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(255, 190, 61, 0.18), transparent 30rem),
+          radial-gradient(circle at bottom right, rgba(73, 215, 255, 0.16), transparent 26rem),
+          linear-gradient(180deg, #160d1d 0%, var(--bg) 100%);
+      }
+
+      main {
+        width: min(100%, 60rem);
+        margin: 0 auto;
+        padding: 2rem 1rem 4rem;
+      }
+
+      .hero,
+      .section {
+        border: 1px solid var(--line);
+        border-radius: 1.6rem;
+        background: var(--panel);
+        backdrop-filter: blur(18px);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+      }
+
+      .hero {
+        padding: 1.6rem;
+        background: linear-gradient(145deg, rgba(43, 28, 57, 0.96), var(--panel-strong));
+      }
+
+      .section {
+        margin-top: 1rem;
+        padding: 1.25rem;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+        padding: 0.38rem 0.72rem;
+        border-radius: 999px;
+        background: rgba(255, 190, 61, 0.12);
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2 {
+        margin: 0 0 0.8rem;
+      }
+
+      p {
+        margin: 0;
+        line-height: 1.72;
+        color: var(--muted);
+      }
+
+      .section p + p {
+        margin-top: 0.75rem;
+      }
+
+      .lang-switcher,
+      .link-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+        margin-top: 1rem;
+      }
+
+      .lang-switcher button,
+      .link-chip {
+        border: 0;
+        border-radius: 999px;
+        padding: 0.68rem 0.98rem;
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .lang-switcher button.is-active {
+        background: var(--accent);
+        color: #2a1700;
+      }
+
+      .contact-link {
+        color: var(--accent-2);
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      footer {
+        padding-top: 1.2rem;
+        font-size: 0.92rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <div class="badge">Pocket Pinball</div>
+        <p data-i18n="hero.label"></p>
+        <h1 data-i18n="title"></h1>
+        <p data-i18n="summary"></p>
+        <p style="margin-top: 0.75rem" data-i18n="updatedAt"></p>
+        <div class="link-row">
+          <a class="link-chip" href="./support.html" data-i18n-link="links.support"></a>
+          <a class="link-chip" href="./marketing.html" data-i18n-link="links.marketing"></a>
+        </div>
+        <div class="lang-switcher" aria-label="Language Switcher">
+          <button type="button" data-lang-switch="zh-Hans">简体中文</button>
+          <button type="button" data-lang-switch="zh-Hant">繁體中文</button>
+          <button type="button" data-lang-switch="en">English</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 data-i18n="sections.local.title"></h2>
+        <p data-i18n="sections.local.body"></p>
+      </section>
+
+      <section class="section">
+        <h2 data-i18n="sections.network.title"></h2>
+        <p data-i18n="sections.network.body"></p>
+      </section>
+
+      <section class="section">
+        <h2 data-i18n="sections.purchases.title"></h2>
+        <p data-i18n="sections.purchases.body"></p>
+      </section>
+
+      <section class="section">
+        <h2 data-i18n="sections.controls.title"></h2>
+        <p data-i18n="sections.controls.body"></p>
+      </section>
+
+      <section class="section">
+        <h2 data-i18n="sections.retention.title"></h2>
+        <p data-i18n="sections.retention.body"></p>
+      </section>
+
+      <section class="section">
+        <h2 data-i18n="contact.title"></h2>
+        <p data-i18n="contact.body"></p>
+        <p style="margin-top: 0.8rem">
+          <a class="contact-link" href="mailto:vanjay.dev@gmail.com">vanjay.dev@gmail.com</a>
+        </p>
+      </section>
+
+      <footer data-i18n="footer"></footer>
+    </main>
+
+    <script>
+      const messages = {
+        en: {
+          title: "Privacy Policy",
+          hero: {
+            label: "Public legal page for the Pocket Pinball iOS app",
+          },
+          summary: "This page describes the current real data behavior of Pocket Pinball on iPhone and iPad.",
+          updatedAt: "Last updated: April 23, 2026",
+          links: {
+            support: "Open Support",
+            marketing: "Open Marketing",
+          },
+          sections: {
+            local: {
+              title: "Data Stored on Your Device",
+              body: "Pocket Pinball stores your selected language, audio settings, appearance selections, marble balance, daily reset counters, install identifier, and related local gameplay preferences on device so the game can preserve progress and restore the same experience between launches.",
+            },
+            network: {
+              title: "Runtime Configuration Requests",
+              body: "The app connects to RCPlatform to fetch runtime configuration for values such as the privacy policy link, free cosmetic defaults, marble reset policy, and eligible debug behavior. These requests include an app version value and the locally generated install identifier used by the app runtime.",
+            },
+            purchases: {
+              title: "StoreKit Purchases",
+              body: "Lifetime unlock purchases, consumable marble-pack purchases, and restore actions are handled through Apple StoreKit. Pocket Pinball does not directly collect your full payment card information. The app only uses StoreKit results needed to unlock content and apply purchased marble packs.",
+            },
+            controls: {
+              title: "Your Controls",
+              body: "You can adjust language, audio, appearance, and data controls inside the app. You can clear local storage from the app when the related control is visible, or remove the app from your device. You may also contact the developer with privacy-related questions or requests.",
+            },
+            retention: {
+              title: "Retention",
+              body: "Local data remains on your device until you clear it from the app, remove the app, or the iOS app lifecycle removes it. Runtime-configuration responses are cached locally for startup fallback and refresh efficiency.",
+            },
+          },
+          contact: {
+            title: "Contact",
+            body: "For privacy questions or requests related to Pocket Pinball, contact the developer at:",
+          },
+          footer: "This policy is intended to match the current shipped behavior of Pocket Pinball.",
+        },
+        "zh-Hans": {
+          title: "隐私政策",
+          hero: {
+            label: "Pocket Pinball iOS 客户端公开法律页面",
+          },
+          summary: "本页面说明 Pocket Pinball 在 iPhone 和 iPad 上当前版本的真实数据处理行为。",
+          updatedAt: "最后更新：2026 年 4 月 23 日",
+          links: {
+            support: "打开技术支持",
+            marketing: "打开市场页",
+          },
+          sections: {
+            local: {
+              title: "设备本地存储的数据",
+              body: "Pocket Pinball 会在设备本地保存你选择的语言、音频设置、外观选择、弹珠数量、每日重置计数、安装标识以及相关玩法偏好，用于在多次启动之间保留相同的游戏体验。",
+            },
+            network: {
+              title: "运行时配置请求",
+              body: "应用会连接 RCPlatform 拉取运行时配置，用于更新隐私政策链接、免费外观默认项、弹珠重置策略以及部分调试可见性。相关请求会包含应用版本值，以及应用本地生成的安装标识。",
+            },
+            purchases: {
+              title: "StoreKit 购买",
+              body: "永久解锁、消耗型弹珠包和恢复购买均通过 Apple StoreKit 处理。Pocket Pinball 不会直接收集你的完整银行卡信息，应用只使用完成内容解锁和发放弹珠所需的 StoreKit 结果。",
+            },
+            controls: {
+              title: "你的控制权",
+              body: "你可以在应用内调整语言、音频、外观和数据相关设置。相关控制项可见时，你也可以在应用内清除本地存储，或者直接删除应用。若有隐私问题，也可以通过邮件联系开发者。",
+            },
+            retention: {
+              title: "保留期限",
+              body: "本地数据会保留在你的设备上，直到你在应用内清除、删除应用，或因 iOS 生命周期变化而被移除。运行时配置响应也会在本地缓存，用于离线启动回退和提高刷新效率。",
+            },
+          },
+          contact: {
+            title: "联系方式",
+            body: "如果你对 Pocket Pinball 的隐私处理有任何问题或请求，请通过以下邮箱联系开发者：",
+          },
+          footer: "本政策旨在反映 Pocket Pinball 当前已发布版本的真实行为。",
+        },
+        "zh-Hant": {
+          title: "隱私政策",
+          hero: {
+            label: "Pocket Pinball iOS 用戶端公開法律頁面",
+          },
+          summary: "本頁面說明 Pocket Pinball 在 iPhone 和 iPad 上目前版本的真實資料處理行為。",
+          updatedAt: "最後更新：2026 年 4 月 23 日",
+          links: {
+            support: "打開技術支援",
+            marketing: "打開市場頁",
+          },
+          sections: {
+            local: {
+              title: "裝置本地儲存的資料",
+              body: "Pocket Pinball 會在裝置本地儲存你選擇的語言、音訊設定、外觀選擇、彈珠數量、每日重置計數、安裝識別碼以及相關玩法偏好，用於在多次啟動之間保留相同的遊戲體驗。",
+            },
+            network: {
+              title: "執行期設定請求",
+              body: "應用會連線至 RCPlatform 拉取執行期設定，用於更新隱私政策連結、免費外觀預設項、彈珠重置策略以及部分除錯可見性。相關請求會包含應用版本值，以及應用本地產生的安裝識別碼。",
+            },
+            purchases: {
+              title: "StoreKit 購買",
+              body: "永久解鎖、消耗型彈珠包與恢復購買均透過 Apple StoreKit 處理。Pocket Pinball 不會直接收集你的完整銀行卡資訊，應用只使用完成內容解鎖與發放彈珠所需的 StoreKit 結果。",
+            },
+            controls: {
+              title: "你的控制權",
+              body: "你可以在應用內調整語言、音訊、外觀與資料相關設定。相關控制項可見時，你也可以在應用內清除本地儲存，或直接刪除應用。若有隱私問題，也可以透過電子郵件聯絡開發者。",
+            },
+            retention: {
+              title: "保留期限",
+              body: "本地資料會保留在你的裝置上，直到你在應用內清除、刪除應用，或因 iOS 生命週期變化而被移除。執行期設定回應也會在本地快取，用於離線啟動回退與提升刷新效率。",
+            },
+          },
+          contact: {
+            title: "聯絡方式",
+            body: "如果你對 Pocket Pinball 的隱私處理有任何問題或請求，請透過以下電子郵件聯絡開發者：",
+          },
+          footer: "本政策旨在反映 Pocket Pinball 目前已發布版本的真實行為。",
+        },
+      };
+
+      const localeMap = { "zh-Hans": "zh-Hans", "zh-Hant": "zh-Hant", en: "en" };
+
+      function preferredLocale() {
+        const stored = localStorage.getItem("pocket-pinball-public-locale");
+        if (stored && messages[stored]) return stored;
+        const language = navigator.language || "en";
+        if (language.startsWith("zh-Hant") || language.includes("TW") || language.includes("HK")) return "zh-Hant";
+        if (language.startsWith("zh")) return "zh-Hans";
+        return "en";
+      }
+
+      function applyLocale(locale) {
+        const resolved = localeMap[locale] || "en";
+        const data = messages[resolved];
+        localStorage.setItem("pocket-pinball-public-locale", resolved);
+        document.documentElement.lang = resolved;
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const path = element.getAttribute("data-i18n").split(".");
+          let value = data;
+          path.forEach((segment) => {
+            value = value?.[segment];
+          });
+          element.textContent = value ?? "";
+        });
+
+        document.querySelectorAll("[data-i18n-link]").forEach((element) => {
+          const path = element.getAttribute("data-i18n-link").split(".");
+          let value = data;
+          path.forEach((segment) => {
+            value = value?.[segment];
+          });
+          element.textContent = value ?? "";
+        });
+
+        document.querySelectorAll("[data-lang-switch]").forEach((button) => {
+          button.classList.toggle("is-active", button.getAttribute("data-lang-switch") === resolved);
+        });
+      }
+
+      document.querySelectorAll("[data-lang-switch]").forEach((button) => {
+        button.addEventListener("click", () => applyLocale(button.getAttribute("data-lang-switch")));
+      });
+
+      applyLocale(preferredLocale());
+    </script>
+  </body>
+</html>

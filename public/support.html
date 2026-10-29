@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pocket Pinball Support</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #081722;
+        --panel: rgba(11, 30, 43, 0.86);
+        --line: rgba(73, 215, 255, 0.18);
+        --text: #eefbff;
+        --muted: #bfd4dc;
+        --accent: #49d7ff;
+        --accent-2: #ffd66b;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: "Avenir Next", "PingFang SC", "Hiragino Sans GB", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(73, 215, 255, 0.18), transparent 28rem),
+          radial-gradient(circle at bottom right, rgba(255, 214, 107, 0.14), transparent 24rem),
+          linear-gradient(180deg, #0a1b27 0%, var(--bg) 100%);
+      }
+
+      main {
+        width: min(100%, 60rem);
+        margin: 0 auto;
+        padding: 2rem 1rem 4rem;
+      }
+
+      .hero, .section {
+        border: 1px solid var(--line);
+        border-radius: 1.5rem;
+        background: var(--panel);
+        backdrop-filter: blur(18px);
+      }
+
+      .hero { padding: 1.5rem; }
+      .section { margin-top: 1rem; padding: 1.2rem; }
+
+      .badge {
+        display: inline-flex;
+        margin-bottom: 0.75rem;
+        padding: 0.38rem 0.72rem;
+        border-radius: 999px;
+        background: rgba(73, 215, 255, 0.12);
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1, h2 { margin: 0 0 0.8rem; }
+      p, li { margin: 0; line-height: 1.72; color: var(--muted); }
+      ul { margin: 0; padding-left: 1.2rem; }
+      li + li { margin-top: 0.45rem; }
+
+      .lang-switcher, .link-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+        margin-top: 1rem;
+      }
+
+      .lang-switcher button, .link-chip {
+        border: 0;
+        border-radius: 999px;
+        padding: 0.68rem 0.98rem;
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .lang-switcher button.is-active {
+        background: var(--accent);
+        color: #04202a;
+      }
+
+      .contact-card {
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 1rem;
+        background: rgba(255, 214, 107, 0.08);
+      }
+
+      .contact-link {
+        color: var(--accent-2);
+        text-decoration: none;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <div class="badge">Pocket Pinball</div>
+        <p data-i18n="hero.label"></p>
+        <h1 data-i18n="title"></h1>
+        <p data-i18n="summary"></p>
+        <div class="contact-card">
+          <p data-i18n="contact.lead"></p>
+          <p style="margin-top: 0.7rem">
+            <a class="contact-link" href="mailto:vanjay.dev@gmail.com">vanjay.dev@gmail.com</a>
+          </p>
+        </div>
+        <div class="link-row">
+          <a class="link-chip" href="./privacy-policy.html" data-i18n-link="links.privacy"></a>
+          <a class="link-chip" href="./marketing.html" data-i18n-link="links.marketing"></a>
+        </div>
+        <div class="lang-switcher" aria-label="Language Switcher">
+          <button type="button" data-lang-switch="zh-Hans">简体中文</button>
+          <button type="button" data-lang-switch="zh-Hant">繁體中文</button>
+          <button type="button" data-lang-switch="en">English</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 data-i18n="sections.include.title"></h2>
+        <ul id="include-list"></ul>
+      </section>
+
+      <section class="section">
+        <h2 data-i18n="sections.scope.title"></h2>
+        <ul id="scope-list"></ul>
+      </section>
+
+      <section class="section">
+        <h2 data-i18n="sections.response.title"></h2>
+        <p data-i18n="sections.response.body"></p>
+      </section>
+
+      <script>
+        const messages = {
+          en: {
+            title: "Support",
+            hero: { label: "Public support page for the Pocket Pinball iOS app" },
+            summary: "Use this page when you need help with gameplay issues, purchases, marble resets, privacy questions, or App Store review follow-up.",
+            contact: { lead: "Send support requests or purchase questions to:" },
+            links: { privacy: "Open Privacy Policy", marketing: "Open Marketing" },
+            sections: {
+              include: {
+                title: "Helpful details to include",
+                items: [
+                  "Your device model and iOS version",
+                  "Your app version and build number",
+                  "A short description of the issue and how to reproduce it",
+                  "Screenshots or video if the problem is visual or timing-related"
+                ]
+              },
+              scope: {
+                title: "What support covers",
+                items: [
+                  "Gameplay stalls, launch pacing, and round settlement issues",
+                  "Premium unlock, restore purchase, and marble pack questions",
+                  "Language, audio, appearance, and save-data issues",
+                  "Privacy-policy and data-handling questions related to Pocket Pinball"
+                ]
+              },
+              response: {
+                title: "Response expectations",
+                body: "Support is provided directly by the developer through email. Response times may vary based on timezone, weekends, and release activity."
+              }
+            }
+          },
+          "zh-Hans": {
+            title: "技术支持",
+            hero: { label: "Pocket Pinball iOS 客户端公开支持页面" },
+            summary: "如果你遇到玩法异常、购买问题、弹珠重置疑问、隐私问题或审核跟进需求，请使用本页面联系开发者。",
+            contact: { lead: "如需技术支持或购买协助，请发送邮件至：" },
+            links: { privacy: "打开隐私政策", marketing: "打开市场页" },
+            sections: {
+              include: {
+                title: "建议在邮件中附带的信息",
+                items: [
+                  "设备型号和 iOS 版本",
+                  "应用版本号和构建号",
+                  "问题现象以及复现步骤",
+                  "如果问题与界面或时机有关，建议附上截图或录屏"
+                ]
+              },
+              scope: {
+                title: "支持范围",
+                items: [
+                  "玩法卡住、发射节奏和结算异常问题",
+                  "永久解锁、恢复购买和弹珠包购买问题",
+                  "语言、音频、外观和本地存档相关问题",
+                  "与 Pocket Pinball 隐私政策和数据处理有关的问题"
+                ]
+              },
+              response: {
+                title: "响应说明",
+                body: "当前技术支持由开发者通过电子邮件直接提供。回复时间会受到时区、周末和版本发布节奏影响。"
+              }
+            }
+          },
+          "zh-Hant": {
+            title: "技術支援",
+            hero: { label: "Pocket Pinball iOS 用戶端公開支援頁面" },
+            summary: "如果你遇到玩法異常、購買問題、彈珠重置疑問、隱私問題或審核跟進需求，請使用本頁面聯絡開發者。",
+            contact: { lead: "如需技術支援或購買協助，請發送電子郵件至：" },
+            links: { privacy: "打開隱私政策", marketing: "打開市場頁" },
+            sections: {
+              include: {
+                title: "建議在郵件中附帶的資訊",
+                items: [
+                  "裝置型號與 iOS 版本",
+                  "應用版本號與建置號",
+                  "問題現象以及重現步驟",
+                  "如果問題與介面或時機有關，建議附上截圖或錄影"
+                ]
+              },
+              scope: {
+                title: "支援範圍",
+                items: [
+                  "玩法卡住、發射節奏與結算異常問題",
+                  "永久解鎖、恢復購買與彈珠包購買問題",
+                  "語言、音訊、外觀與本地存檔相關問題",
+                  "與 Pocket Pinball 隱私政策與資料處理有關的問題"
+                ]
+              },
+              response: {
+                title: "回覆說明",
+                body: "目前技術支援由開發者透過電子郵件直接提供。回覆時間會受到時區、週末與版本發佈節奏影響。"
+              }
+            }
+          }
+        };
+
+        const localeMap = { "zh-Hans": "zh-Hans", "zh-Hant": "zh-Hant", en: "en" };
+        function getPreferredLocale() {
+          const stored = localStorage.getItem("pocket-pinball-public-locale");
+          if (stored && messages[stored]) return stored;
+          const language = navigator.language || "en";
+          if (language.startsWith("zh-Hant") || language.includes("TW") || language.includes("HK")) return "zh-Hant";
+          if (language.startsWith("zh")) return "zh-Hans";
+          return "en";
+        }
+        function applyLocale(locale) {
+          const resolved = localeMap[locale] || "en";
+          const data = messages[resolved];
+          localStorage.setItem("pocket-pinball-public-locale", resolved);
+          document.documentElement.lang = resolved;
+          document.querySelectorAll("[data-i18n]").forEach((element) => {
+            const path = element.getAttribute("data-i18n").split(".");
+            let value = data;
+            path.forEach((segment) => value = value?.[segment]);
+            element.textContent = value ?? "";
+          });
+          document.querySelectorAll("[data-i18n-link]").forEach((element) => {
+            const path = element.getAttribute("data-i18n-link").split(".");
+            let value = data;
+            path.forEach((segment) => value = value?.[segment]);
+            element.textContent = value ?? "";
+          });
+          const includeList = document.getElementById("include-list");
+          const scopeList = document.getElementById("scope-list");
+          includeList.innerHTML = "";
+          scopeList.innerHTML = "";
+          data.sections.include.items.forEach((item) => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            includeList.appendChild(li);
+          });
+          data.sections.scope.items.forEach((item) => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            scopeList.appendChild(li);
+          });
+          document.querySelectorAll("[data-lang-switch]").forEach((button) => {
+            button.classList.toggle("is-active", button.getAttribute("data-lang-switch") === resolved);
+          });
+        }
+        document.querySelectorAll("[data-lang-switch]").forEach((button) => {
+          button.addEventListener("click", () => applyLocale(button.getAttribute("data-lang-switch")));
+        });
+        applyLocale(getPreferredLocale());
+      </script>
+    </main>
+  </body>
+</html>

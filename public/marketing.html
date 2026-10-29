@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pocket Pinball</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #170a11;
+        --panel: rgba(35, 16, 26, 0.88);
+        --line: rgba(255, 133, 173, 0.18);
+        --text: #fff3f7;
+        --muted: #e2cad1;
+        --accent: #ff85ad;
+        --accent-2: #ffd66b;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: "Avenir Next", "PingFang SC", "Hiragino Sans GB", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(255, 133, 173, 0.20), transparent 28rem),
+          radial-gradient(circle at bottom right, rgba(255, 214, 107, 0.18), transparent 25rem),
+          linear-gradient(180deg, #1c0c15 0%, var(--bg) 100%);
+      }
+
+      main {
+        width: min(100%, 64rem);
+        margin: 0 auto;
+        padding: 2rem 1rem 4rem;
+      }
+
+      .hero, .section {
+        border: 1px solid var(--line);
+        border-radius: 1.6rem;
+        background: var(--panel);
+        backdrop-filter: blur(18px);
+      }
+
+      .hero { padding: 1.6rem; }
+      .section { margin-top: 1rem; padding: 1.25rem; }
+
+      .badge {
+        display: inline-flex;
+        margin-bottom: 0.75rem;
+        padding: 0.38rem 0.72rem;
+        border-radius: 999px;
+        background: rgba(255, 133, 173, 0.12);
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1, h2, h3 { margin: 0 0 0.8rem; }
+      p, li { margin: 0; line-height: 1.72; color: var(--muted); }
+      ul { margin: 0; padding-left: 1.2rem; }
+      li + li { margin-top: 0.45rem; }
+
+      .lang-switcher, .link-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+        margin-top: 1rem;
+      }
+
+      .lang-switcher button, .link-chip {
+        border: 0;
+        border-radius: 999px;
+        padding: 0.68rem 0.98rem;
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .lang-switcher button.is-active {
+        background: var(--accent);
+        color: #2a0916;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+        gap: 0.9rem;
+        margin-top: 1rem;
+      }
+
+      .feature-card {
+        padding: 1rem;
+        border-radius: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .contact-link {
+        color: var(--accent-2);
+        text-decoration: none;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <div class="badge">Pocket Pinball iOS</div>
+        <p data-i18n="hero.label"></p>
+        <h1 data-i18n="title"></h1>
+        <p data-i18n="summary"></p>
+        <div class="link-row">
+          <a class="link-chip" href="./privacy-policy.html" data-i18n-link="links.privacy"></a>
+          <a class="link-chip" href="./support.html" data-i18n-link="links.support"></a>
+        </div>
+        <div class="lang-switcher" aria-label="Language Switcher">
+          <button type="button" data-lang-switch="zh-Hans">简体中文</button>
+          <button type="button" data-lang-switch="zh-Hant">繁體中文</button>
+          <button type="button" data-lang-switch="en">English</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 data-i18n="sections.highlights.title"></h2>
+        <div class="feature-grid" id="highlights-grid"></div>
+      </section>
+
+      <section class="section">
+        <h2 data-i18n="sections.why.title"></h2>
+        <ul id="why-list"></ul>
+      </section>
+
+      <section class="section">
+        <h2 data-i18n="sections.contact.title"></h2>
+        <p data-i18n="sections.contact.body"></p>
+        <p style="margin-top: 0.8rem">
+          <a class="contact-link" href="mailto:vanjay.dev@gmail.com">vanjay.dev@gmail.com</a>
+        </p>
+      </section>
+
+      <script>
+        const messages = {
+          en: {
+            title: "Fast portrait pinball with playful themes and smoother launch control",
+            hero: { label: "Public marketing page for the Pocket Pinball iOS app" },
+            summary: "Pocket Pinball is a one-screen vertical arcade game built for quick rounds, bright cosmetic themes, and kid-friendly variety across visuals, music, and sound effects.",
+            links: { privacy: "Open Privacy Policy", support: "Open Support" },
+            sections: {
+              highlights: {
+                title: "Highlights",
+                items: [
+                  { title: "Quick portrait sessions", body: "Play comfortably on iPhone and iPad in vertical orientation without extra setup." },
+                  { title: "Theme variety", body: "Swap between classic arcade, neon, candy, dinosaur, dreamy, and pixel-style presentations." },
+                  { title: "Premium content", body: "Unlock every skin, music theme, and sound effect forever with a one-time purchase." },
+                  { title: "Marble economy", body: "Use daily free resets or optional consumable marble packs when you want to keep playing." }
+                ]
+              },
+              why: {
+                title: "What the app focuses on",
+                items: [
+                  "Short rounds with a more controllable launch-force curve",
+                  "Clear, colorful cabinet themes that fit different child-facing tastes",
+                  "Local-first play without account registration"
+                ]
+              },
+              contact: {
+                title: "Contact",
+                body: "For support, purchase questions, or review follow-up, contact the developer directly."
+              }
+            }
+          },
+          "zh-Hans": {
+            title: "更顺手的竖屏弹珠街机体验，配上多套亲子化主题风格",
+            hero: { label: "Pocket Pinball iOS 客户端公开市场页" },
+            summary: "Pocket Pinball 是一款单屏竖屏街机弹珠游戏，适合快速来一局，并通过多套皮肤、背景音乐和音效风格覆盖更丰富的小孩审美偏好。",
+            links: { privacy: "打开隐私政策", support: "打开技术支持" },
+            sections: {
+              highlights: {
+                title: "核心亮点",
+                items: [
+                  { title: "快速竖屏开局", body: "在 iPhone 和 iPad 上都以竖屏单屏方式完成完整游玩。" },
+                  { title: "丰富主题风格", body: "提供经典街机、霓虹、糖果、恐龙、梦境与像素等差异明显的视觉方案。" },
+                  { title: "Premium 内容", body: "通过一次性购买永久解锁全部皮肤、背景音乐和音效。" },
+                  { title: "弹珠经济系统", body: "可以使用每日免费重置，也可以在需要时购买消耗型弹珠包。" }
+                ]
+              },
+              why: {
+                title: "这款应用关注什么",
+                items: [
+                  "更自然、更可控的发射力道与下落节奏",
+                  "适合不同小孩喜好的鲜明主题与音效组合",
+                  "不依赖账号注册的本地优先游玩体验"
+                ]
+              },
+              contact: {
+                title: "联系开发者",
+                body: "如果你有支持、购买或审核相关问题，可以直接通过邮件联系开发者。"
+              }
+            }
+          },
+          "zh-Hant": {
+            title: "更順手的直向彈珠街機體驗，搭配多套親子化主題風格",
+            hero: { label: "Pocket Pinball iOS 用戶端公開市場頁" },
+            summary: "Pocket Pinball 是一款單螢幕直向街機彈珠遊戲，適合快速開一局，並透過多套皮膚、背景音樂與音效風格覆蓋更豐富的小孩審美偏好。",
+            links: { privacy: "打開隱私政策", support: "打開技術支援" },
+            sections: {
+              highlights: {
+                title: "核心亮點",
+                items: [
+                  { title: "快速直向開局", body: "在 iPhone 和 iPad 上都以直向單螢幕方式完成完整遊玩。" },
+                  { title: "豐富主題風格", body: "提供經典街機、霓虹、糖果、恐龍、夢境與像素等差異明顯的視覺方案。" },
+                  { title: "Premium 內容", body: "透過一次性購買永久解鎖全部皮膚、背景音樂與音效。" },
+                  { title: "彈珠經濟系統", body: "可以使用每日免費重置，也可以在需要時購買消耗型彈珠包。" }
+                ]
+              },
+              why: {
+                title: "這款應用關注什麼",
+                items: [
+                  "更自然、更容易掌控的發射力道與下落節奏",
+                  "適合不同小孩喜好的鮮明主題與音效組合",
+                  "不依賴帳號註冊的本地優先遊玩體驗"
+                ]
+              },
+              contact: {
+                title: "聯絡開發者",
+                body: "如果你有支援、購買或審核相關問題，可以直接透過電子郵件聯絡開發者。"
+              }
+            }
+          }
+        };
+
+        const localeMap = { "zh-Hans": "zh-Hans", "zh-Hant": "zh-Hant", en: "en" };
+        function getPreferredLocale() {
+          const stored = localStorage.getItem("pocket-pinball-public-locale");
+          if (stored && messages[stored]) return stored;
+          const language = navigator.language || "en";
+          if (language.startsWith("zh-Hant") || language.includes("TW") || language.includes("HK")) return "zh-Hant";
+          if (language.startsWith("zh")) return "zh-Hans";
+          return "en";
+        }
+        function applyLocale(locale) {
+          const resolved = localeMap[locale] || "en";
+          const data = messages[resolved];
+          localStorage.setItem("pocket-pinball-public-locale", resolved);
+          document.documentElement.lang = resolved;
+          document.querySelectorAll("[data-i18n]").forEach((element) => {
+            const path = element.getAttribute("data-i18n").split(".");
+            let value = data;
+            path.forEach((segment) => value = value?.[segment]);
+            element.textContent = value ?? "";
+          });
+          document.querySelectorAll("[data-i18n-link]").forEach((element) => {
+            const path = element.getAttribute("data-i18n-link").split(".");
+            let value = data;
+            path.forEach((segment) => value = value?.[segment]);
+            element.textContent = value ?? "";
+          });
+          const highlightsGrid = document.getElementById("highlights-grid");
+          const whyList = document.getElementById("why-list");
+          highlightsGrid.innerHTML = "";
+          whyList.innerHTML = "";
+          data.sections.highlights.items.forEach((item) => {
+            const card = document.createElement("article");
+            card.className = "feature-card";
+            const title = document.createElement("h3");
+            title.textContent = item.title;
+            const body = document.createElement("p");
+            body.textContent = item.body;
+            card.appendChild(title);
+            card.appendChild(body);
+            highlightsGrid.appendChild(card);
+          });
+          data.sections.why.items.forEach((item) => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            whyList.appendChild(li);
+          });
+          document.querySelectorAll("[data-lang-switch]").forEach((button) => {
+            button.classList.toggle("is-active", button.getAttribute("data-lang-switch") === resolved);
+          });
+        }
+        document.querySelectorAll("[data-lang-switch]").forEach((button) => {
+          button.addEventListener("click", () => applyLocale(button.getAttribute("data-lang-switch")));
+        });
+        applyLocale(getPreferredLocale());
+      </script>
+    </main>
+  </body>
+</html>
